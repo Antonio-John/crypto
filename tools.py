@@ -66,6 +66,19 @@ def get_atbashed_pos_alphabet(numbers):
     
     return new_position
 
+def get_atbashed_pos_alphabet_encrypt(numbers):
+    """gets the atbashed position equivelent of letter
+
+    Args:
+        numbers ([int]): positions of the letters from the cipher text
+
+    Returns:
+        new_position: the decrypted atbash position
+    """
+    new_position = [(-alpha_position  % 25)  for alpha_position in numbers if alpha_position!=" "] 
+    
+    return new_position
+
 def get_key(val):
     """gets the letter from a specificed postion. e,g.
        1=a,2=b,...,z=25
