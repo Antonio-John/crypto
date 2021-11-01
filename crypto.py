@@ -14,15 +14,16 @@ def atbash_decrypt(cipher_text):
     Returns:
         [plain_text_joined]: [the decryped cipher text i.e plain text]
     """
-
+    # error catching
     type_str_error(cipher_text)
     type_alphabet_error(cipher_text)
     
-    
+    # transformation letters to atbashed equivalent
     letter_pos=get_pos_alphabet(cipher_text)
     atbashed_pos=get_atbashed_pos_alphabet(letter_pos)
     plain_text=get_alphabet_from_pos(atbashed_pos)
     
+    # joins plain text into a string
     plain_text_joined = "".join(plain_text)
     
     
