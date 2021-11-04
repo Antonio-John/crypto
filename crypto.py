@@ -1,5 +1,6 @@
 from tools import (type_str_error, 
                    type_alphabet_error,
+                   type_int_error,
                    get_pos_alphabet,
                    get_atbashed_pos_alphabet,
                    get_alphabet_from_pos,
@@ -56,7 +57,14 @@ def atbash_encrypt(plain_text):
     return plain_text_joined
 
 
+def ceaser_decrpyt(cipher_text, shift):
 
-                
+    # error catching
+    type_str_error(cipher_text)
+    type_alphabet_error(cipher_text)
+    type_int_error(shift)
+
+    letter_pos=get_pos_alphabet(cipher_text)
+
 
 

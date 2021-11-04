@@ -23,6 +23,18 @@ def type_str_error(letters:str):
     if type(letters) != str:
         raise TypeError("CipherText must be type string")
 
+        
+def type_int_error(shift:int):
+    """[Raises type error if letters isn't a string]
+    Args:
+        letters (str): [letter being passed in]
+
+    Raises:
+        TypeError: [if letters isn't a string, raise error]
+    """
+    if type(shift) != int:
+        raise TypeError("Shift must be an int")
+
 
 def type_alphabet_error(letters:str):
     """
@@ -107,5 +119,17 @@ def get_alphabet_from_pos(letter_pos):
     alpha=[get_key(letter) for letter in letter_pos]
     
     return alpha
+
+def get_ceaser_pos(letters_pos,shift):
+
+    #shifted=[letter-shift for letter in letters_pos if letter>shift else letter]
+
+    shifted=[letter-shift if letter>shift else letter % 25- shift  for letter in letters_pos]
+
+    return shifted
+
+# need to work out this,best if i read this 
+
+x=get_ceaser_pos([2,3,20],shift=7)
     
-    
+print(x)

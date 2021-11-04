@@ -2,6 +2,7 @@ import unittest
 
 from tools import (type_str_error,
                    type_alphabet_error,
+                   type_int_error,
                    get_pos_alphabet,
                    get_atbashed_pos_alphabet,
                    get_alphabet_from_pos)
@@ -48,6 +49,12 @@ class test_tools(unittest.TestCase):
         result=get_alphabet_from_pos(sample)
         
         self.assertListEqual(expected, result)
+
+    def test_type_int_error(self):
+
+        self.assertRaises(TypeError, type_int_error, "2")
+        self.assertRaises(TypeError, type_int_error, ["A"])
+        self.assertRaises(TypeError, type_int_error, ("A", "B", "C"))
         
         
         
