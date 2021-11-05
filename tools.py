@@ -139,7 +139,7 @@ def get_ceaser_pos(letters_pos,shift):
 
 
 def get_ceaser_pos_decrypt(letters_pos,shift):
-    """ges the ceaser decrypted position of letter
+    """ges the ceaser encrypted position of letter
 
     Args:
         letters_pos ([list of ints]): list of ints which are 
@@ -147,7 +147,7 @@ def get_ceaser_pos_decrypt(letters_pos,shift):
         shift ([int]): [the value for your ceaser cipher shifted]
 
     Returns:
-        [list]: [the ceaser decypted value with the shift applied to it]
+        [list]: [the ceaser encrypted value with the shift applied to it]
     """
 
 
