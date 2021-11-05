@@ -4,7 +4,9 @@ from tools import (type_str_error,
                    get_pos_alphabet,
                    get_atbashed_pos_alphabet,
                    get_alphabet_from_pos,
-                   get_atbashed_pos_alphabet_encrypt)
+                   get_atbashed_pos_alphabet_encrypt,
+                   get_ceaser_pos,
+                   get_ceaser_pos_decrypt)
 
 def atbash_decrypt(cipher_text):
     """Decryps cipher texts into plain tests
@@ -65,6 +67,37 @@ def ceaser_decrpyt(cipher_text, shift):
     type_int_error(shift)
 
     letter_pos=get_pos_alphabet(cipher_text)
+    ceaser_pos=get_ceaser_pos(letters_pos=letter_pos,
+                              shift=shift)
+
+    plain_text=get_alphabet_from_pos(ceaser_pos)
+    
+    # joins plain text into a string
+    plain_text_joined = "".join(plain_text)
+    
+    
+    return plain_text_joined
+
+
+def ceaser_encrypt(plain_text, shift):
+
+    # error catching
+    type_str_error(plain_text)
+    type_alphabet_error(plain_text)
+    type_int_error(shift)
+
+    letter_pos=get_pos_alphabet(plain_text)
+    ceaser_pos=get_ceaser_pos_decrypt(letters_pos=letter_pos,
+                                      shift=shift)
+
+    plain_text=get_alphabet_from_pos(ceaser_pos)
+    
+    # joins plain text into a string
+    plain_text_joined = "".join(plain_text)
+    
+    
+    return plain_text_joined
+
 
 
 

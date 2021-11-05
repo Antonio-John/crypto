@@ -121,15 +121,37 @@ def get_alphabet_from_pos(letter_pos):
     return alpha
 
 def get_ceaser_pos(letters_pos,shift):
+    """ges the ceaser decrypted position of letter
 
-    #shifted=[letter-shift for letter in letters_pos if letter>shift else letter]
+    Args:
+        letters_pos ([list of ints]): list of ints which are 
+        letter positions
+        shift ([int]): [the value for your ceaser cipher shifted]
 
-    shifted=[letter-shift if letter>shift else letter % 25- shift  for letter in letters_pos]
+    Returns:
+        [list]: [the ceaser decypted value with the shift applied to it]
+    """
+
+    shifted=[(letter-shift) % 26 for letter in letters_pos]
 
     return shifted
 
-# need to work out this,best if i read this 
 
-x=get_ceaser_pos([2,3,20],shift=7)
-    
-print(x)
+
+def get_ceaser_pos_decrypt(letters_pos,shift):
+    """ges the ceaser decrypted position of letter
+
+    Args:
+        letters_pos ([list of ints]): list of ints which are 
+        letter positions
+        shift ([int]): [the value for your ceaser cipher shifted]
+
+    Returns:
+        [list]: [the ceaser decypted value with the shift applied to it]
+    """
+
+
+    shifted=[(letter+shift) % 26 for letter in letters_pos]
+
+    return shifted
+
