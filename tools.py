@@ -11,6 +11,11 @@ alphabet={"A":0,"B":1,"C":2,"D":3,"E":4,"F":5,"G":6,"H":7,"I":8,
            "R":17,"S":18,"T":19,"U":20 ,"V":21,"W":22,"X":23,"Y":24,
            "Z":25, " ":" "}
 
+alphabet_list=["A","B","C","D","E","F","G","H","I",
+           "J","K","L","M","N","O","P", "Q",
+           "R","S","T","U" ,"V","W","X","Y",
+           "Z"]
+
 
 def type_str_error(letters:str):
     """[Raises type error if letters isn't a string]
@@ -50,6 +55,12 @@ def type_alphabet_error(letters:str):
         if letter not in alphabet and letter != " ":
                 raise TypeError("""Letter in CipherText must be 
                                 letter between A-Z""", letter)
+                            
+def type_duplicate_letter_error(letters:str):
+    
+    if len(letters) != len(set(letters)):
+        
+        raise TypeError("Duplicates in permutation")
                                 
     
 def get_pos_alphabet(letters:str)->list:
@@ -153,5 +164,62 @@ def get_ceaser_pos_decrypt(letters_pos,shift):
 
     return shifted
 
-#def create_viginere_table(permutation)
+def order_alpha(letter:str)->list:
+    """
+    will create a list with the letter passed through first,
+    then will go through all rest of the alphabet and loops back
+    E.g order_alpha("D") = ["D","E","F",...,"Z","A","B","C"]
+
+    Parameters
+    ----------
+    letter : str
+        DESCRIPTION.
+
+    Returns
+    -------
+    list
+        DESCRIPTIONs
+
+    """
+    
+    
+    pos = alphabet_list.index(letter)
+
+    new_alpha =  alphabet_list[pos:26] + alphabet_list[0:pos] 
+
+    return(new_alpha)
+
+def vigenere_permutation(permutation):
+    
+    permutation=[char for char in permutation]
+    
+    not_in_perma=[letter for letter in alphabet_list if letter not in permutation]
+    
+    order_alpha_perm=permutation+not_in_perma
+    
+    return order_alpha_perm
+    
+
+def create_viginere_table(permutation):
+    
+    table={}
+    
+    if permutation == "":
+        table={letter:order_alpha(letter) for letter in alphabet_list}
+    else:
+        top_row=vigenere_permutation(permutation)
+        for letter in alphabet_list:
+            table[letter]=top_row
+            top_row=top_row[1:] + top_row[:1]
+        
+    
+    return table
+
+def keyword_text_match_up(text, keyword):
+    
+    text_list=[char for char in text]
+    number_letter=len(text_list)
+        
+        
+table=create_viginere_table("THISLEPGYWNOMARKDBFCJQUVXZ")  
 

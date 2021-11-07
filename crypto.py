@@ -1,6 +1,7 @@
 from tools import (type_str_error, 
                    type_alphabet_error,
                    type_int_error,
+                   type_duplicate_letter_error,
                    get_pos_alphabet,
                    get_atbashed_pos_alphabet,
                    get_alphabet_from_pos,
@@ -106,7 +107,7 @@ def vigenere_decrypt(cipher_text, keyword, permutation=""):
     type_str_error(keyword)
     type_alphabet_error(keyword)
     type_str_error(permutation)
-
+    type_duplicate_letter_error(cipher_text)
 
 
     

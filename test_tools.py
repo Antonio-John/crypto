@@ -3,11 +3,15 @@ import unittest
 from tools import (type_str_error,
                    type_alphabet_error,
                    type_int_error,
+                   type_duplicate_letter_error,
                    get_pos_alphabet,
                    get_atbashed_pos_alphabet,
                    get_alphabet_from_pos,
                    get_ceaser_pos,
-                   get_ceaser_pos_decrypt)
+                   get_ceaser_pos_decrypt,
+                   order_alpha,
+                   vigenere_permutation,
+                   create_viginere_table)
 
 class test_tools(unittest.TestCase):
 
@@ -21,6 +25,11 @@ class test_tools(unittest.TestCase):
         
         self.assertRaises(TypeError, type_alphabet_error, "3")
         self.assertRaises(TypeError, type_alphabet_error, ["!?@"])
+    
+    def test_type_duplicate_letter_error(self):
+        
+        self.assertRaises(TypeError, type_duplicate_letter_error, "AA")
+        
         
     def test_get_pos_alphabet(self):
         
@@ -84,11 +93,89 @@ class test_tools(unittest.TestCase):
 
         self.assertListEqual(result, expected)
 
+    def test_order_alpha(self):
+        
+        input_var="D"
+        
+        result=order_alpha(input_var)
+        
+        expected=['D','E','F','G','H','I','J','K','L','M','N','O','P',
+                  'Q','R','S','T','U','V','W','X','Y','Z','A','B','C']
 
+        self.assertListEqual(result, expected)
         
-
+    def test_vigenere_permutation(self):
         
+        input_var="SWAN"
         
+        result=vigenere_permutation("SWAN")
+        
+        expected=['S','W','A','N','B','C','D','E','F','G','H','I','J',
+                  'K','L','M','O','P','Q','R','T','U','V','X','Y','Z']
+        
+        self.assertListEqual(result, expected)        
+        
+    def test_create_viginere_table(self):
+        
+        input_var="THISLEPGYWNOMARKDBFCJQUVXZ"
+        
+        result=create_viginere_table(input_var)
+        
+        expected={'A': ['T','H','I','S','L','E','P','G','Y','W','N','O','M',
+                        'A','R','K','D','B','F','C','J','Q','U','V','X','Z'],
+                  'B': ['H','I','S','L','E','P','G','Y','W','N','O','M','A',
+                        'R','K','D','B','F','C','J','Q','U','V','X','Z','T'],
+                  'C': ['I','S','L','E','P','G','Y','W','N','O','M','A','R',
+                        'K','D','B','F','C','J','Q','U','V','X','Z','T','H'],
+                  'D': ['S','L','E','P','G','Y','W','N','O','M','A','R','K',
+                        'D','B','F','C','J','Q','U','V','X','Z','T','H','I'],
+                  'E': ['L','E','P','G','Y','W','N','O','M','A','R','K','D',
+                        'B','F','C','J','Q','U','V','X','Z','T','H','I','S'],
+                  'F': ['E','P','G','Y','W','N','O','M','A','R','K','D','B',
+                        'F','C','J','Q','U','V','X','Z','T','H','I','S','L'],
+                  'G': ['P','G','Y','W','N','O','M','A','R','K','D','B','F',
+                        'C','J','Q','U','V','X','Z','T','H','I','S','L','E'],
+                  'H': ['G','Y','W','N','O','M','A','R','K','D','B','F','C',
+                        'J','Q','U','V','X','Z','T','H','I','S','L','E','P'],
+                  'I': ['Y','W','N','O','M','A','R','K','D','B','F','C','J',
+                        'Q','U','V','X','Z','T','H','I','S','L','E','P','G'],
+                  'J': ['W','N','O','M','A','R','K','D','B','F','C','J','Q',
+                        'U','V','X','Z','T','H','I','S','L','E','P','G','Y'],
+                  'K': ['N', 'O','M','A','R','K','D','B','F','C','J','Q','U',
+                        'V','X','Z','T','H','I','S','L','E','P','G','Y','W'],
+                  'L': ['O','M','A','R','K','D','B','F','C','J','Q','U','V',
+                        'X','Z','T','H','I','S','L','E','P','G','Y','W','N'],
+                  'M': ['M','A','R','K','D','B','F','C','J','Q','U','V','X',
+                        'Z','T','H','I','S','L','E','P','G','Y','W','N','O'],
+                  'N': ['A','R','K','D','B','F','C','J','Q','U','V','X','Z',
+                        'T','H','I','S','L','E','P','G','Y','W','N','O','M'],
+                  'O': ['R','K','D','B','F','C','J','Q','U','V','X','Z','T',
+                        'H','I','S','L','E','P','G','Y','W','N','O','M','A'],
+                  'P': ['K','D','B','F','C','J','Q','U','V','X','Z','T','H',
+                        'I','S','L','E','P','G','Y','W','N','O','M','A','R'],
+                  'Q': ['D','B','F','C','J','Q','U','V','X','Z','T','H','I',
+                        'S','L','E','P','G','Y','W','N','O','M','A','R','K'],
+                  'R': ['B','F','C','J','Q','U','V','X','Z','T','H','I','S',
+                        'L','E','P','G','Y','W','N','O','M','A','R','K','D'],
+                  'S': ['F','C','J','Q','U','V','X','Z','T','H','I','S','L',
+                        'E','P','G','Y','W','N','O','M','A','R','K','D','B'],
+                  'T': ['C','J','Q','U','V','X','Z','T','H','I','S','L','E',
+                        'P','G','Y','W','N','O','M','A','R','K','D','B','F'],
+                  'U': ['J','Q','U','V','X','Z','T','H','I','S','L','E','P',
+                        'G','Y','W','N','O','M','A','R','K','D','B','F','C'],
+                  'V': ['Q','U','V','X','Z','T','H','I','S','L','E','P','G',
+                        'Y','W','N','O','M','A','R','K','D','B','F','C','J'],
+                  'W': ['U','V','X','Z','T','H','I','S','L','E','P','G','Y',
+                        'W','N','O','M','A','R','K','D','B','F','C','J','Q'],
+                  'X': ['V','X','Z','T','H','I','S','L','E','P','G','Y','W',
+                        'N','O','M','A','R','K','D','B','F','C','J','Q','U'],
+                  'Y': ['X','Z','T','H','I','S','L','E','P','G','Y','W','N',
+                        'O','M','A','R','K','D','B','F','C','J','Q','U','V'],
+                  'Z': ['Z','T','H','I','S','L','E','P','G','Y','W','N','O',
+                        'M','A','R','K','D','B','F','C','J','Q','U','V','X']}   
+        
+        self.maxDiff=None
+        self.assertDictEqual(expected, result)
         
 if __name__=="__main__":
     unittest.main()
