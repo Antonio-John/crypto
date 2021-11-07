@@ -11,7 +11,9 @@ from tools import (type_str_error,
                    get_ceaser_pos_decrypt,
                    order_alpha,
                    vigenere_permutation,
-                   create_viginere_table)
+                   create_viginere_table,
+                   keyword_text_match_up,
+                   viginere_get_table_decrypt)
 
 class test_tools(unittest.TestCase):
 
@@ -177,6 +179,31 @@ class test_tools(unittest.TestCase):
         self.maxDiff=None
         self.assertDictEqual(expected, result)
         
+    def test_keyword_text_match_up(self):
+        
+        result1,result2=keyword_text_match_up(text="FGQVEQYONMCCHAXTPBAC", 
+                              keyword="FAMILY")      
+    
+        expected1=['F','A','M','I','L','Y','F','A','M','I','L','Y',
+                  'F','A','M','I','L','Y','F','A']
+        
+        expected2=['F','G','Q','V','E','Q','Y','O','N','M','C',
+                   'C','H','A','X','T','P','B','A','C']
+        
+        self.assertEqual(result1, expected1)
+        self.assertEqual(result2, expected2)
+    
+    def test_viginere_get_table_decrypt(self):
+        
+        vigin_table=create_viginere_table("") 
+        result=viginere_get_table_decrypt(table=vigin_table,
+                                          keyword_letter="M",
+                                          text_letter="Q")
+        
+        expected="E"
+        
+        self.assertEqual(result, expected)
+    
 if __name__=="__main__":
     unittest.main()
 

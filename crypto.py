@@ -7,7 +7,10 @@ from tools import (type_str_error,
                    get_alphabet_from_pos,
                    get_atbashed_pos_alphabet_encrypt,
                    get_ceaser_pos,
-                   get_ceaser_pos_decrypt)
+                   get_ceaser_pos_decrypt,
+                   keyword_text_match_up,
+                   create_viginere_table,
+                   viginere_get_table_decrypt)
 
 def atbash_decrypt(cipher_text):
     """Decryps cipher texts into plain tests
@@ -107,11 +110,24 @@ def vigenere_decrypt(cipher_text, keyword, permutation=""):
     type_str_error(keyword)
     type_alphabet_error(keyword)
     type_str_error(permutation)
-    type_duplicate_letter_error(cipher_text)
-
-
+    type_duplicate_letter_error(keyword)
+    
+    # create table
+    table=create_viginere_table(permutation)
+    
+    # list of keyword next to cipher text
+    key,cipher=keyword_text_match_up(text=cipher_text, 
+                                     keyword=keyword) 
+    
+    # decrypt using table, keyword list & cipher
+    plain_text=[viginere_get_table_decrypt(table,k,text) for [k,text] in zip(key,cipher)]    
+    # joins plain text into a string
+    plain_text_joined = "".join(plain_text)
+    
+    
+    return plain_text_joined
     
   
 
-vigenere_decrypt("a","b",2)
+
 

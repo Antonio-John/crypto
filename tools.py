@@ -58,9 +58,10 @@ def type_alphabet_error(letters:str):
                             
 def type_duplicate_letter_error(letters:str):
     
-    if len(letters) != len(set(letters)):
-        
-        raise TypeError("Duplicates in permutation")
+    if letters != "":
+        if len(letters) != len(set(letters)):
+            
+            raise TypeError("Duplicates in permutation")
                                 
     
 def get_pos_alphabet(letters:str)->list:
@@ -218,8 +219,25 @@ def create_viginere_table(permutation):
 def keyword_text_match_up(text, keyword):
     
     text_list=[char for char in text]
-    number_letter=len(text_list)
-        
-        
-table=create_viginere_table("THISLEPGYWNOMARKDBFCJQUVXZ")  
+    text_length=len(text_list)
+    
+    keyword_list=[char for char in keyword]
+    keyword_length=len(keyword)
+    
+    number_repeats=int(text_length/keyword_length)
+    leftover=text_length%keyword_length
+    
+    keyword_repeat=keyword_list*number_repeats+keyword_list[0:leftover]
+    
+    return keyword_repeat,text_list
+    
+def viginere_get_table_decrypt(table,keyword_letter,text_letter):
+    
+    row=table[keyword_letter]
+    where_in_row=row.index(text_letter)
+    out_letter=alphabet_list[where_in_row]
+    
+    return out_letter
+
+
 
