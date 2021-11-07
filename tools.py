@@ -21,7 +21,7 @@ def type_str_error(letters:str):
         TypeError: [if letters isn't a string, raise error]
     """
     if type(letters) != str:
-        raise TypeError("CipherText must be type string")
+        raise TypeError(f"{letters} must be type string")
 
         
 def type_int_error(shift:int):
@@ -33,7 +33,7 @@ def type_int_error(shift:int):
         TypeError: [if letters isn't a string, raise error]
     """
     if type(shift) != int:
-        raise TypeError("Shift must be an int")
+        raise TypeError(f"{shift} must be an int")
 
 
 def type_alphabet_error(letters:str):
@@ -50,7 +50,7 @@ def type_alphabet_error(letters:str):
         if letter not in alphabet and letter != " ":
                 raise TypeError("""Letter in CipherText must be 
                                 letter between A-Z""", letter)
-    
+                                
     
 def get_pos_alphabet(letters:str)->list:
     """gets the numerical position of letters in the alphabet,
@@ -136,8 +136,6 @@ def get_ceaser_pos(letters_pos,shift):
 
     return shifted
 
-
-
 def get_ceaser_pos_decrypt(letters_pos,shift):
     """ges the ceaser encrypted position of letter
 
@@ -154,4 +152,6 @@ def get_ceaser_pos_decrypt(letters_pos,shift):
     shifted=[(letter+shift) % 26 for letter in letters_pos]
 
     return shifted
+
+#def create_viginere_table(permutation)
 

@@ -98,6 +98,19 @@ def ceaser_encrypt(plain_text, shift):
     
     return plain_text_joined
 
+def vigenere_decrypt(cipher_text, keyword, permutation=""):
+
+    # error catching
+    type_str_error(cipher_text)
+    type_alphabet_error(cipher_text)
+    type_str_error(keyword)
+    type_alphabet_error(keyword)
+    type_str_error(permutation)
 
 
+
+    
+  
+
+vigenere_decrypt("a","b",2)
 
