@@ -240,4 +240,12 @@ def viginere_get_table_decrypt(table,keyword_letter,text_letter):
     return out_letter
 
 
+def viginere_get_table_encrypt(table,keyword_letter,text_letter):
+
+    row=table[keyword_letter]
+    col=alphabet_list.index(text_letter)
+    out_letter=row[col]
+
+    return out_letter
+
 
