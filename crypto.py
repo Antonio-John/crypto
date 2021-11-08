@@ -11,7 +11,10 @@ from tools import (type_str_error,
                    keyword_text_match_up,
                    create_viginere_table,
                    viginere_get_table_decrypt,
-                   viginere_get_table_encrypt)
+                   viginere_get_table_encrypt,
+                   playfair_grid_list,
+                   playfair_deal_with_dups,
+                   get_play_fair_row_col)
 
 def atbash_decrypt(cipher_text):
     """Decryps cipher texts into plain tests
@@ -153,8 +156,26 @@ def vigenere_encrypt(plain_text, keyword, permutation=""):
     
     return plain_text_joined
     
-print(vigenere_encrypt("ATTACKATDAWN", keyword="LEMON"))
-  
+def playfair_decrypt(cipher_text,keyword):
+    
+    type_str_error(cipher_text)
+    type_alphabet_error(cipher_text)
+    type_str_error(keyword)
+    type_alphabet_error(keyword)
+
+    grid_list=playfair_grid_list(keyword)
+    plain_text_adjusted_dups=playfair_deal_with_dups(cipher_text)
+    
+    get_play_fair_row_col("E")
+    
+    # iterate through the two letter chunks
+    # then work out which type of playfair they are
+    # then do apropriate documentation
+    
+
+# tests for crypto package
+# doc strings for all functions
+# watch python package tutorial
 
 
 

@@ -16,6 +16,10 @@ alphabet_list=["A","B","C","D","E","F","G","H","I",
            "R","S","T","U" ,"V","W","X","Y",
            "Z"]
 
+alphabet_list_playfair=["A","B","C","D","E","F","G","H","I",
+           "K","L","M","N","O","P", "Q",
+           "R","S","T","U" ,"V","W","X","Y",
+           "Z"]
 
 def type_str_error(letters:str):
     """[Raises type error if letters isn't a string]
@@ -247,5 +251,35 @@ def viginere_get_table_encrypt(table,keyword_letter,text_letter):
     out_letter=row[col]
 
     return out_letter
+
+def playfair_grid_list(keyword):
+    
+    keyword_list_strip = list(keyword.strip())
+    
+    key_word_no_dups = list(dict.fromkeys(keyword_list_strip))
+    
+    other_letter=[letter for letter in alphabet_list_playfair if letter not in key_word_no_dups]
+   
+    playfair_grid = key_word_no_dups + other_letter
+    
+    return playfair_grid
+    
+def playfair_deal_with_dups(text):
+    
+    message = list(text.strip())
+    for i in range(1,len(message)):
+       
+        if message[i] == message[i-1]:
+                message.insert(i, "X")
+
+    return message
+
+def get_play_fair_row_col(playfair_grid,letter):
+    
+    pos_in_grid=playfair_grid.index(letter)
+    row,col=divmod(pos_in_grid,5)
+    
+    return row, col
+
 
 

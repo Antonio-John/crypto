@@ -13,7 +13,11 @@ from tools import (type_str_error,
                    vigenere_permutation,
                    create_viginere_table,
                    keyword_text_match_up,
-                   viginere_get_table_decrypt)
+                   viginere_get_table_decrypt,
+                   viginere_get_table_encrypt,
+                   playfair_grid_list,
+                   playfair_deal_with_dups,
+                   get_play_fair_row_col)
 
 class test_tools(unittest.TestCase):
 
@@ -39,7 +43,7 @@ class test_tools(unittest.TestCase):
         
         expected=[0, 21, 5]
         
-        result=get_pos_alphabet(["A","v", "F"])
+        result=get_pos_alphabet(sample)
         
         self.assertListEqual(expected, result)
         
@@ -203,7 +207,51 @@ class test_tools(unittest.TestCase):
         expected="E"
         
         self.assertEqual(result, expected)
-
+        
+    def test_viginere_get_table_encrypt(self):
+        
+        vigin_table=create_viginere_table("") 
+        result=viginere_get_table_encrypt(table=vigin_table,
+                                          keyword_letter="Y",
+                                          text_letter="S")
+        
+        expected="Q"
+        
+        self.assertEqual(result, expected)
+        
+    def test_playfair_grid_list(self):
+        
+        input_var="GLAMORGAN"
+        
+        result=playfair_grid_list(keyword=input_var)
+        
+        expected=['G','L','A','M','O','R','N','B','C','D','E','F','H',
+                  'I','K','P','Q','S','T','U','V','W','X','Y','Z']
+        
+        self.assertEqual(result, expected)
+        
+    def test_playfair_deal_with_dups(self):
+        
+        input_var="MEETMEATTREFFORESTSTATION"
+        
+        result=playfair_deal_with_dups(input_var)
+        
+        expected=["M","E","X","E","T","M","E","A","T","X","T","R","E","F","X",
+                  "F","O","R","E","S","T","S","T","A","T","I","O","N"]
+                
+        self.assertEqual(result, expected)
+        
+    def test_get_play_fair_row_col(self):
+        
+        input_var=['G','L','A','M','O','R','N','B','C','D','E','F','H',
+                  'I','K','P','Q','S','T','U','V','W','X','Y','Z']
+        
+        result=get_play_fair_row_col(playfair_grid=input_var,
+                                     letter="S")
+        
+        expected=(3,2)
+        
+        self.assertEqual(result, expected)
 
     
     
