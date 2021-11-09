@@ -281,5 +281,12 @@ def get_play_fair_row_col(playfair_grid,letter):
     
     return row, col
 
+def put_into_pairs(text):
 
+    if len(text) % 2 !=0:
+        text.append("X")
+    
+    split = [first + second for first,second in zip(text[::2], text[1::2])]
+
+    return split
 

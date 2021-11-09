@@ -17,7 +17,8 @@ from tools import (type_str_error,
                    viginere_get_table_encrypt,
                    playfair_grid_list,
                    playfair_deal_with_dups,
-                   get_play_fair_row_col)
+                   get_play_fair_row_col,
+                   put_into_pairs)
 
 class test_tools(unittest.TestCase):
 
@@ -252,6 +253,20 @@ class test_tools(unittest.TestCase):
         expected=(3,2)
         
         self.assertEqual(result, expected)
+
+    def test_put_into_pairs(self):
+
+        input_var=["A","B","C"]    
+
+        result=put_into_pairs(text=input_var)
+
+        expected=["AB","CX"]
+
+        self.assertEqual(result, expected)
+
+
+
+
 
     
     

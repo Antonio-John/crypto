@@ -14,7 +14,8 @@ from tools import (type_str_error,
                    viginere_get_table_encrypt,
                    playfair_grid_list,
                    playfair_deal_with_dups,
-                   get_play_fair_row_col)
+                   get_play_fair_row_col,
+                   put_into_pairs)
 
 def atbash_decrypt(cipher_text):
     """Decryps cipher texts into plain tests
@@ -165,6 +166,8 @@ def playfair_decrypt(cipher_text,keyword):
 
     grid_list=playfair_grid_list(keyword)
     plain_text_adjusted_dups=playfair_deal_with_dups(cipher_text)
+
+    paired_list=put_into_pairs(plain_text_adjusted_dups)
     
     get_play_fair_row_col("E")
     
