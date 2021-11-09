@@ -18,7 +18,8 @@ from tools import (type_str_error,
                    playfair_grid_list,
                    playfair_deal_with_dups,
                    get_play_fair_row_col,
-                   put_into_pairs)
+                   put_into_pairs,
+                   decrypt_pair)
 
 class test_tools(unittest.TestCase):
 
@@ -264,6 +265,28 @@ class test_tools(unittest.TestCase):
 
         self.assertEqual(result, expected)
 
+    def test_decrypt_pair(self):
+
+      input_var=['G','L','A','M','O','R','N','B','C','D','E','F','H',
+                  'I','K','P','Q','S','T','U','V','W','X','Y','Z']
+
+      result_1=decrypt_pair(playfair_list=input_var, 
+                        pair="GP")
+
+      result_2=decrypt_pair(playfair_list=input_var, 
+                        pair="FI")
+
+                        
+      result_3=decrypt_pair(playfair_list=input_var, 
+                        pair="MF")
+
+      expected_1=("V","E")
+      expected_2=("E","H")
+      expected_3=("L","I")
+
+      self.assertEqual(result_1, expected_1)
+      self.assertEqual(result_2, expected_2)
+      self.assertEqual(result_3, expected_3)
 
 
 

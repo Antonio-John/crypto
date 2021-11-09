@@ -321,12 +321,9 @@ def decrypt_pair(playfair_list, pair):
         else:
             second_decrpyted_letter=playfair_list[(pos_in_list_2+20)]
     else:
-        pass
+            first_decrpyted_letter=playfair_list[(l1_row*5+l2_col)]
+            second_decrpyted_letter=playfair_list[(l2_row*5+l1_col)]
 
     return first_decrpyted_letter, second_decrpyted_letter
 
-input_var=['G','L','A','M','O','R','N','B','C','D','E','F','H',
-                  'I','K','P','Q','S','T','U','V','W','X','Y','Z']
-
-x=decrypt_pair(playfair_list=input_var, pair="OZ")
-print(x)
+# abstract out rectangle, col, row

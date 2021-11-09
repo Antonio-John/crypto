@@ -15,7 +15,8 @@ from tools import (type_str_error,
                    playfair_grid_list,
                    playfair_deal_with_dups,
                    get_play_fair_row_col,
-                   put_into_pairs)
+                   put_into_pairs,
+                   decrypt_pair)
 
 def atbash_decrypt(cipher_text):
     """Decryps cipher texts into plain tests
@@ -169,16 +170,26 @@ def playfair_decrypt(cipher_text,keyword):
 
     paired_list=put_into_pairs(plain_text_adjusted_dups)
     
-    
-    
-    
-    # then work out which type of playfair they are
-    # then do apropriate documentation
-    
+    listy=[decrypt_pair(playfair_list=grid_list,pair=pairs) for pairs in paired_list]
 
+    plain_text=[]
+    for i in range(len(listy)):
+        first,second=listy[i]
+        plain_text.append(first)
+        plain_text.append(second)
+    
+    plain_text_joined = "".join(plain_text)
+
+    plain_text_no_x = plain_text_joined.replace("X","")
+
+    
+    return plain_text_no_x
+
+    # functionalise row, cols rectanges
+    #playfair encrypt
     # tests for crypto package
     # doc strings for all functions
     # watch python package tutorial
-
+    # package up 
 
 
