@@ -22,7 +22,8 @@ from tools import (type_str_error,
                    playfair_decrypt_pair,
                    playfair_decrypt_row_pair,
                    playfair_decrypt_col_pair,
-                   playfair_decrypt_rectangle)
+                   playfair_decrypt_rectangle,
+                   unpack_list_of_tuples)
 
 class test_tools(unittest.TestCase):
 
@@ -349,6 +350,15 @@ class test_tools(unittest.TestCase):
             
       self.assertEqual(result_1, expected_1)
       self.assertEqual(result_2, expected_2)
+
+    def test_unpack_list_of_tuples(self):
+
+      input_var=[("A","B"),("C","D")]
+      result=unpack_list_of_tuples(list_tuples=input_var)
+
+      expected=["A","B","C","D"]
+
+      self.assertEqual(result, expected)
 
 
 

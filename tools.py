@@ -356,4 +356,13 @@ def playfair_decrypt_pair(playfair_list, pair):
 
     return first_decrpyted_letter, second_decrpyted_letter
 
-# abstract out rectangle, col, row
+
+def unpack_list_of_tuples(list_tuples):
+
+    plain_text=[]
+    for i in range(len(list_tuples)):
+        first,second=list_tuples[i]
+        plain_text.append(first)
+        plain_text.append(second)
+
+    return plain_text
