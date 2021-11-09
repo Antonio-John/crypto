@@ -306,14 +306,20 @@ def decrypt_pair(playfair_list, pair):
             first_decrpyted_letter=playfair_list[(pos_in_list_1-1)]
         else:
             first_decrpyted_letter=playfair_list[(pos_in_list_1+4)]
-
         if pos_in_list_2 % 5 !=0:
             second_decrpyted_letter=playfair_list[(pos_in_list_2-1)]
         else:
             second_decrpyted_letter=playfair_list[(pos_in_list_2+4)]
     elif l1_col==l2_col:
-        first_decrpyted_letter=playfair_list[(l1_row-1)%5]
-        second_decrpyted_letter=playfair_list[(l2_row-1)%5]
+
+        if pos_in_list_1 >4:
+            first_decrpyted_letter=playfair_list[(pos_in_list_1-5)]
+        else:
+            first_decrpyted_letter=playfair_list[(pos_in_list_1+20)]
+        if pos_in_list_2 >4:
+            second_decrpyted_letter=playfair_list[(pos_in_list_2-5)]
+        else:
+            second_decrpyted_letter=playfair_list[(pos_in_list_2+20)]
     else:
         pass
 
@@ -322,5 +328,5 @@ def decrypt_pair(playfair_list, pair):
 input_var=['G','L','A','M','O','R','N','B','C','D','E','F','H',
                   'I','K','P','Q','S','T','U','V','W','X','Y','Z']
 
-x=decrypt_pair(playfair_list=input_var, pair="GL")
+x=decrypt_pair(playfair_list=input_var, pair="OZ")
 print(x)
