@@ -290,3 +290,37 @@ def put_into_pairs(text):
 
     return split
 
+def decrypt_pair(playfair_list, pair):
+
+    (l1_row,l1_col)=get_play_fair_row_col(playfair_grid=playfair_list,
+                                                    letter=pair[0])
+
+    (l2_row,l2_col)=get_play_fair_row_col(playfair_grid=playfair_list,
+                                                    letter=pair[1])
+
+    pos_in_list_1=playfair_list.index(pair[0])
+    pos_in_list_2=playfair_list.index(pair[1])
+
+    if l1_row==l2_row:
+        if pos_in_list_1 % 5 !=0:
+            first_decrpyted_letter=playfair_list[(pos_in_list_1-1)]
+        else:
+            first_decrpyted_letter=playfair_list[(pos_in_list_1+4)]
+
+        if pos_in_list_2 % 5 !=0:
+            second_decrpyted_letter=playfair_list[(pos_in_list_2-1)]
+        else:
+            second_decrpyted_letter=playfair_list[(pos_in_list_2+4)]
+    elif l1_col==l2_col:
+        first_decrpyted_letter=playfair_list[(l1_row-1)%5]
+        second_decrpyted_letter=playfair_list[(l2_row-1)%5]
+    else:
+        pass
+
+    return first_decrpyted_letter, second_decrpyted_letter
+
+input_var=['G','L','A','M','O','R','N','B','C','D','E','F','H',
+                  'I','K','P','Q','S','T','U','V','W','X','Y','Z']
+
+x=decrypt_pair(playfair_list=input_var, pair="GL")
+print(x)

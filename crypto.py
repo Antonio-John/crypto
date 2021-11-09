@@ -169,16 +169,16 @@ def playfair_decrypt(cipher_text,keyword):
 
     paired_list=put_into_pairs(plain_text_adjusted_dups)
     
-    get_play_fair_row_col("E")
     
-    # iterate through the two letter chunks
+    
+    
     # then work out which type of playfair they are
     # then do apropriate documentation
     
 
-# tests for crypto package
-# doc strings for all functions
-# watch python package tutorial
+    # tests for crypto package
+    # doc strings for all functions
+    # watch python package tutorial
 
 
 
