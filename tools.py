@@ -281,7 +281,7 @@ def get_play_fair_row_col(playfair_grid,letter):
     
     return row, col
 
-def put_into_pairs(text):
+def playfair_put_into_pairs(text):
 
     if len(text) % 2 !=0:
         text.append("X")
@@ -290,7 +290,49 @@ def put_into_pairs(text):
 
     return split
 
-def decrypt_pair(playfair_list, pair):
+def playfair_decrypt_row_pair(grid, pair):
+
+    pos_in_list_1=grid.index(pair[0])
+    pos_in_list_2=grid.index(pair[1])
+
+    if pos_in_list_1 % 5 !=0:
+        first_decrpyted_letter=grid[(pos_in_list_1-1)]
+    else:
+        first_decrpyted_letter=grid[(pos_in_list_1+4)]
+    if pos_in_list_2 % 5 !=0:
+        second_decrpyted_letter=grid[(pos_in_list_2-1)]
+    else:
+        second_decrpyted_letter=grid[(pos_in_list_2+4)]
+
+    return first_decrpyted_letter,second_decrpyted_letter
+
+def playfair_decrypt_col_pair(grid, pair):
+   
+
+    pos_in_list_1=grid.index(pair[0])
+    pos_in_list_2=grid.index(pair[1])
+
+    if pos_in_list_1 >4:
+        first_decrpyted_letter=grid[(pos_in_list_1-5)]
+    else:
+        first_decrpyted_letter=grid[(pos_in_list_1+20)]
+    if pos_in_list_2 >4:
+        second_decrpyted_letter=grid[(pos_in_list_2-5)]
+    else:
+        second_decrpyted_letter=grid[(pos_in_list_2+20)]
+
+    return first_decrpyted_letter,second_decrpyted_letter
+
+
+def playfair_decrypt_rectangle(grid, x_1,y_1,x_2,y_2):
+
+    first_decrpyted_letter=grid[(x_1*5+y_2)]
+    second_decrpyted_letter=grid[(x_2*5+y_1)]
+
+    return first_decrpyted_letter,second_decrpyted_letter
+
+
+def playfair_decrypt_pair(playfair_list, pair):
 
     (l1_row,l1_col)=get_play_fair_row_col(playfair_grid=playfair_list,
                                                     letter=pair[0])
@@ -298,31 +340,19 @@ def decrypt_pair(playfair_list, pair):
     (l2_row,l2_col)=get_play_fair_row_col(playfair_grid=playfair_list,
                                                     letter=pair[1])
 
-    pos_in_list_1=playfair_list.index(pair[0])
-    pos_in_list_2=playfair_list.index(pair[1])
-
     if l1_row==l2_row:
-        if pos_in_list_1 % 5 !=0:
-            first_decrpyted_letter=playfair_list[(pos_in_list_1-1)]
-        else:
-            first_decrpyted_letter=playfair_list[(pos_in_list_1+4)]
-        if pos_in_list_2 % 5 !=0:
-            second_decrpyted_letter=playfair_list[(pos_in_list_2-1)]
-        else:
-            second_decrpyted_letter=playfair_list[(pos_in_list_2+4)]
+        (first_decrpyted_letter, 
+        second_decrpyted_letter)=playfair_decrypt_row_pair(grid=playfair_list, pair=pair)
     elif l1_col==l2_col:
-
-        if pos_in_list_1 >4:
-            first_decrpyted_letter=playfair_list[(pos_in_list_1-5)]
-        else:
-            first_decrpyted_letter=playfair_list[(pos_in_list_1+20)]
-        if pos_in_list_2 >4:
-            second_decrpyted_letter=playfair_list[(pos_in_list_2-5)]
-        else:
-            second_decrpyted_letter=playfair_list[(pos_in_list_2+20)]
+        (first_decrpyted_letter, 
+        second_decrpyted_letter)=playfair_decrypt_col_pair(grid=playfair_list, pair=pair)
     else:
-            first_decrpyted_letter=playfair_list[(l1_row*5+l2_col)]
-            second_decrpyted_letter=playfair_list[(l2_row*5+l1_col)]
+        (first_decrpyted_letter, 
+        second_decrpyted_letter)=playfair_decrypt_rectangle(grid=playfair_list, 
+                                                            x_1=l1_row,
+                                                            y_1=l1_col,
+                                                            x_2=l2_row,
+                                                            y_2=l2_col)
 
     return first_decrpyted_letter, second_decrpyted_letter
 

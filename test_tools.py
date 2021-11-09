@@ -18,8 +18,11 @@ from tools import (type_str_error,
                    playfair_grid_list,
                    playfair_deal_with_dups,
                    get_play_fair_row_col,
-                   put_into_pairs,
-                   decrypt_pair)
+                   playfair_put_into_pairs,
+                   playfair_decrypt_pair,
+                   playfair_decrypt_row_pair,
+                   playfair_decrypt_col_pair,
+                   playfair_decrypt_rectangle)
 
 class test_tools(unittest.TestCase):
 
@@ -255,11 +258,11 @@ class test_tools(unittest.TestCase):
         
         self.assertEqual(result, expected)
 
-    def test_put_into_pairs(self):
+    def test_playfair_put_into_pairs(self):
 
         input_var=["A","B","C"]    
 
-        result=put_into_pairs(text=input_var)
+        result=playfair_put_into_pairs(text=input_var)
 
         expected=["AB","CX"]
 
@@ -270,14 +273,14 @@ class test_tools(unittest.TestCase):
       input_var=['G','L','A','M','O','R','N','B','C','D','E','F','H',
                   'I','K','P','Q','S','T','U','V','W','X','Y','Z']
 
-      result_1=decrypt_pair(playfair_list=input_var, 
+      result_1=playfair_decrypt_pair(playfair_list=input_var, 
                         pair="GP")
 
-      result_2=decrypt_pair(playfair_list=input_var, 
+      result_2=playfair_decrypt_pair(playfair_list=input_var, 
                         pair="FI")
 
                         
-      result_3=decrypt_pair(playfair_list=input_var, 
+      result_3=playfair_decrypt_pair(playfair_list=input_var, 
                         pair="MF")
 
       expected_1=("V","E")
@@ -287,6 +290,65 @@ class test_tools(unittest.TestCase):
       self.assertEqual(result_1, expected_1)
       self.assertEqual(result_2, expected_2)
       self.assertEqual(result_3, expected_3)
+
+    def test_playfair_decrpt_row_pair(self):     
+
+      
+      input_var=['G','L','A','M','O','R','N','B','C','D','E','F','H',
+                  'I','K','P','Q','S','T','U','V','W','X','Y','Z']
+
+      result_1=playfair_decrypt_row_pair(grid=input_var, 
+                     pair="QT")
+            
+      result_2=playfair_decrypt_row_pair(grid=input_var, 
+                     pair="EK")
+
+      expected_1=("P","S")
+      expected_2=("K","I")
+            
+      self.assertEqual(result_1, expected_1)
+      self.assertEqual(result_2, expected_2)
+
+    def test_playfair_decrpt_col_pair(self):     
+
+      
+      input_var=['G','L','A','M','O','R','N','B','C','D','E','F','H',
+                  'I','K','P','Q','S','T','U','V','W','X','Y','Z']
+
+      result_1=playfair_decrypt_col_pair(grid=input_var, 
+                     pair="LN")
+            
+      result_2=playfair_decrypt_col_pair(grid=input_var, 
+                     pair="TC")
+
+      expected_1=("W","L")
+      expected_2=("I","M")
+            
+      self.assertEqual(result_1, expected_1)
+      self.assertEqual(result_2, expected_2)
+
+    def test_playfair_decrypt_rectangle(self):
+
+      input_var=['G','L','A','M','O','R','N','B','C','D','E','F','H',
+                  'I','K','P','Q','S','T','U','V','W','X','Y','Z']
+
+      result_1=playfair_decrypt_rectangle(grid=input_var, 
+                                          x_1=0,
+                                          y_1=3,
+                                          x_2=2,
+                                          y_2=1)
+            
+      result_2=playfair_decrypt_rectangle(grid=input_var, 
+                                          x_1=0,
+                                          y_1=0,
+                                          x_2=1,
+                                          y_2=1)
+
+      expected_1=("L","I")
+      expected_2=("L","R")
+            
+      self.assertEqual(result_1, expected_1)
+      self.assertEqual(result_2, expected_2)
 
 
 
