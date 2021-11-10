@@ -186,8 +186,6 @@ def order_alpha(letter:str)->list:
         DESCRIPTIONs
 
     """
-    
-    
     pos = alphabet_list.index(letter)
 
     new_alpha =  alphabet_list[pos:26] + alphabet_list[0:pos] 
@@ -195,17 +193,34 @@ def order_alpha(letter:str)->list:
     return(new_alpha)
 
 def vigenere_permutation(permutation):
+    """creates the vigenre square top row with a permutation
+
+    Args:
+        permutation str: the permutation used to create
+        the vigenre square. Can't be a duplicate
+
+    Returns:
+        list: the vigenre square top row in the form of a list
+    """
     
     permutation=[char for char in permutation]
-    
     not_in_perma=[letter for letter in alphabet_list if letter not in permutation]
-    
     order_alpha_perm=permutation+not_in_perma
     
     return order_alpha_perm
     
 
 def create_viginere_table(permutation):
+    """Creates viginere table based on if there is a permutation ornot
+
+    Args:
+        permutation str: the permutation used to create
+        the vigenre square. Can't be a duplicate. If permutation=""
+        then normal A,B,C square. 
+
+    Returns:
+        table dictionary: All rows of the viginere list
+    """
     
     table={}
     
@@ -221,7 +236,17 @@ def create_viginere_table(permutation):
     return table
 
 def keyword_text_match_up(text, keyword):
-    
+    """repeats keyword so that it matches the text e.g
+    keyword=fam, text="ABCDEFG" it will output
+    keyword_repeat=["F","A","M,"F","A","M","F] &
+    text_list=["A","B","C,"D","E","F","G]
+    Args:
+        text str: the cipher or plain text to do encryption/decryption on
+        keyword str: The keyword used for encryption/decryption
+    Returns:
+        keyword_repeat,text_list [lists]: The text with it's keyword
+        repeated so it matches the text
+    """
     text_list=[char for char in text]
     text_length=len(text_list)
     
