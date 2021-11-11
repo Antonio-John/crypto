@@ -349,7 +349,15 @@ def get_play_fair_row_col(playfair_grid,letter):
     return row, col
 
 def playfair_put_into_pairs(text):
+    """takes a list of strings and puts them in to pairs
 
+    Args:
+        text ([list]): [lsit of strings e.g ["A","B","C","D"]
+        
+
+    Returns:
+        [list]: [that will go to ["AB","CD]]
+    """
     if len(text) % 2 !=0:
         text.append("X")
     
