@@ -20,9 +20,12 @@ from tools import (type_str_error,
                    get_play_fair_row_col,
                    playfair_put_into_pairs,
                    playfair_decrypt_pair,
+                   playfair_encrypt_row_pair,
                    playfair_decrypt_row_pair,
                    playfair_decrypt_col_pair,
+                   playfair_encrypt_col_pair,
                    playfair_decrypt_rectangle,
+                   playfair_encrypt_rectangle,
                    unpack_list_of_tuples)
 
 class test_tools(unittest.TestCase):
@@ -304,11 +307,21 @@ class test_tools(unittest.TestCase):
       result_2=playfair_decrypt_row_pair(grid=input_var, 
                      pair="EK")
 
+      result_3=playfair_decrypt_row_pair(grid=input_var, 
+                     pair="GL")
+
+      result_4=playfair_decrypt_row_pair(grid=input_var, 
+                     pair="VZ")
+
+
       expected_1=("P","S")
       expected_2=("K","I")
+      expected_3=("O","G")
+      expected_4=("Z","Y")
             
       self.assertEqual(result_1, expected_1)
       self.assertEqual(result_2, expected_2)
+      self.assertEqual(result_3, expected_3)
 
     def test_playfair_decrpt_col_pair(self):     
 
@@ -360,11 +373,88 @@ class test_tools(unittest.TestCase):
 
       self.assertEqual(result, expected)
 
+    def test_playfair_encrypt_row_pair(self):
+
+      input_var=['G','L','A','M','O','R','N','B','C','D','E','F','H',
+                  'I','K','P','Q','S','T','U','V','W','X','Y','Z']
+          
+      result_1=playfair_encrypt_row_pair(grid=input_var,
+                                    pair="AM")
+
+      result_2=playfair_encrypt_row_pair(grid=input_var,
+                                    pair="GO")
+
+      result_3=playfair_encrypt_row_pair(grid=input_var,
+                                    pair="VZ")
+
+      expected_1=("M","O")                    
+      expected_2=("L","G")
+      expected_3=("W","V")
+
+
+      self.assertEqual(result_1, expected_1)
+      self.assertEqual(result_2, expected_2)
+      self.assertEqual(result_3, expected_3)
+
+    def test_playfair_encrypt_col_pair(self):
+
+      input_var=['G','L','A','M','O','R','N','B','C','D','E','F','H',
+                  'I','K','P','Q','S','T','U','V','W','X','Y','Z']
+          
+      result_1=playfair_encrypt_col_pair(grid=input_var,
+                                    pair="NF")
+
+      result_2=playfair_encrypt_col_pair(grid=input_var,
+                                    pair="MY")
+
+      result_3=playfair_encrypt_col_pair(grid=input_var,
+                                    pair="EP")
+
+      expected_1=("F","Q")                    
+      expected_2=("C","M")
+      expected_3=("P","V")
+
+
+      self.assertEqual(result_1, expected_1)
+      self.assertEqual(result_2, expected_2)
+      self.assertEqual(result_3, expected_3)
+
+    def test_playfair_encrypt_rectangle(self):
+
+      input_var=['G','L','A','M','O','R','N','B','C','D','E','F','H',
+                  'I','K','P','Q','S','T','U','V','W','X','Y','Z']
+          
+      result_1=playfair_encrypt_rectangle(grid=input_var,
+                                          x_1=2,
+                                          y_1=0,
+                                          x_2=0,
+                                          y_2=2)
+
+      result_2=playfair_encrypt_rectangle(grid=input_var,
+                                          x_1=3,
+                                          y_1=3,
+                                          x_2=4,
+                                          y_2=2)
+
+      result_3=playfair_encrypt_rectangle(grid=input_var,
+                                          x_1=3,
+                                          y_1=3,
+                                          x_2=1,
+                                          y_2=0)
+                                   
+      expected_1=("H","G")                    
+      expected_2=("S","Y")
+      expected_3=("P","C")
+
+
+      self.assertEqual(result_1, expected_1)
+      self.assertEqual(result_2, expected_2)
+      self.assertEqual(result_3, expected_3)
+
+      
 
 
 
-    
-    
 if __name__=="__main__":
     unittest.main()
 

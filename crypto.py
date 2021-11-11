@@ -14,9 +14,9 @@ from tools import (type_str_error,
                    viginere_get_table_encrypt,
                    playfair_grid_list,
                    playfair_deal_with_dups,
-                   get_play_fair_row_col,
                    playfair_put_into_pairs,
                    playfair_decrypt_pair,
+                   playfair_encrypt_pair,
                    unpack_list_of_tuples)
 
 def atbash_decrypt(cipher_text):
@@ -178,8 +178,29 @@ def playfair_decrypt(cipher_text,keyword):
 
     return plain_text_no_x
 
+def playfair_encrypt(plain_text,keyword):
+    
+    type_str_error(plain_text)
+    type_alphabet_error(plain_text)
+    type_str_error(keyword)
+    type_alphabet_error(keyword)
 
+    grid_list=playfair_grid_list(keyword)
+    plain_text_adjusted_dups=playfair_deal_with_dups(plain_text)
 
+    paired_list=playfair_put_into_pairs(plain_text_adjusted_dups)
+    descrypted_tuples=[playfair_encrypt_pair(playfair_list=grid_list,pair=pairs) for pairs in paired_list]
+
+    chiper_text=unpack_list_of_tuples(list_tuples=descrypted_tuples)
+    chiper_text_joined = "".join(chiper_text)
+    chiper_text_no_x = chiper_text_joined.replace("X","")
+
+    return chiper_text_no_x
+
+x=playfair_encrypt(plain_text="MEETMEATTREFFORESTSTATION",
+                            keyword="GLAMORGAN")
+
+print(x)
 
     
     #playfair encrypt

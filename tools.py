@@ -349,7 +349,8 @@ def get_play_fair_row_col(playfair_grid,letter):
     return row, col
 
 def playfair_put_into_pairs(text):
-    """takes a list of strings and puts them in to pairs
+    """takes a list of strings and puts them in to pairs,
+        adds extra X on the end incase where len text is odd 
 
     Args:
         text ([list]): [lsit of strings e.g ["A","B","C","D"]
@@ -366,6 +367,17 @@ def playfair_put_into_pairs(text):
     return split
 
 def playfair_decrypt_row_pair(grid, pair):
+    """if two letters are in the same row,
+    this is the method to decrypt 
+
+    Args:
+        grid ([list]): [list of the playfair grid]
+        pair ([str]): [pair of strings in form e.g "AB"]
+
+    Returns:
+        [first_decrpyted_letter,
+        second_decrpyted_letter]: [Returns decrypted letters as a tuple]
+    """
 
     pos_in_list_1=grid.index(pair[0])
     pos_in_list_2=grid.index(pair[1])
@@ -382,7 +394,17 @@ def playfair_decrypt_row_pair(grid, pair):
     return first_decrpyted_letter,second_decrpyted_letter
 
 def playfair_decrypt_col_pair(grid, pair):
-   
+    """if two letters are in the same col,
+    this is the method to decrypt 
+
+    Args:
+        grid ([list]): [list of the playfair grid]
+        pair ([str]): [pair of strings in form e.g "AB"]
+
+    Returns:
+        [first_decrpyted_letter,
+        second_decrpyted_letter]: [Returns decrypted letters as a tuple]
+    """
 
     pos_in_list_1=grid.index(pair[0])
     pos_in_list_2=grid.index(pair[1])
@@ -400,6 +422,20 @@ def playfair_decrypt_col_pair(grid, pair):
 
 
 def playfair_decrypt_rectangle(grid, x_1,y_1,x_2,y_2):
+    """if two letters are in not in the same col/row,
+    this is the method to decrypt 
+
+    Args:
+        grid ([list]): [playfair grid]
+        x_1 ([): [first letter, row]]
+        y_1 ([first letter col]): [first letter, col]]
+        x_2 ([second ]): [second letter, row]]
+        y_2 ([type]): [second letter, col]]
+
+    Returns:
+        [first_decrpyted_letter,
+        second_decrpyted_letter]: [Returns decrypted letters as a tuple]
+    """
 
     first_decrpyted_letter=grid[(x_1*5+y_2)]
     second_decrpyted_letter=grid[(x_2*5+y_1)]
@@ -408,13 +444,23 @@ def playfair_decrypt_rectangle(grid, x_1,y_1,x_2,y_2):
 
 
 def playfair_decrypt_pair(playfair_list, pair):
+    """Takes the playfair grid and a pair, calculates which method
+    of decryption it should use (row, col, rectangle, then proceeds
+    to do this decryption)
 
+    Args:
+        playfair_list ([list]): [playfair grid]
+        pair ([str]): [pair you want to decrypt i.e "AB"]
+
+    Returns:
+        [first_decrpyted_letter,
+        second_decrpyted_letter]: [Returns decrypted letters as a tuple]
+    """
     (l1_row,l1_col)=get_play_fair_row_col(playfair_grid=playfair_list,
                                                     letter=pair[0])
 
     (l2_row,l2_col)=get_play_fair_row_col(playfair_grid=playfair_list,
                                                     letter=pair[1])
-
     if l1_row==l2_row:
         (first_decrpyted_letter, 
         second_decrpyted_letter)=playfair_decrypt_row_pair(grid=playfair_list, pair=pair)
@@ -431,13 +477,136 @@ def playfair_decrypt_pair(playfair_list, pair):
 
     return first_decrpyted_letter, second_decrpyted_letter
 
+def playfair_encrypt_row_pair(grid, pair):
+    """if two letters are in the same row,
+    this is the method to decrypt 
+
+    Args:
+        grid ([list]): [list of the playfair grid]
+        pair ([str]): [pair of strings in form e.g "AB"]
+
+    Returns:
+        [first_decrpyted_letter,
+        second_decrpyted_letter]: [Returns encrypted letters as a tuple]
+    """
+
+    pos_in_list_1=grid.index(pair[0])
+    pos_in_list_2=grid.index(pair[1])
+
+    end_of_row=[4,9,14,19,24]
+
+    if (pos_in_list_1 not in end_of_row) | (pos_in_list_1==0):
+        first_encrypted_letter=grid[(pos_in_list_1+1)]
+    else:
+        first_encrypted_letter=grid[(pos_in_list_1-4)]
+    if (pos_in_list_2 not in end_of_row) | (pos_in_list_2==0):
+        second_encrypted_letter=grid[(pos_in_list_2+1)]
+    else:
+        second_encrypted_letter=grid[(pos_in_list_2-4)]
+
+    return first_encrypted_letter,second_encrypted_letter
+
+def playfair_encrypt_col_pair(grid, pair):
+    """if two letters are in the same col,
+    this is the method to decrypt 
+
+    Args:
+        grid ([list]): [list of the playfair grid]
+        pair ([str]): [pair of strings in form e.g "AB"]
+
+    Returns:
+        [first_decrpyted_letter,
+        second_decrpyted_letter]: [Returns encrypted letters as a tuple]
+    """
+
+    pos_in_list_1=grid.index(pair[0])
+    pos_in_list_2=grid.index(pair[1])
+
+    if pos_in_list_1 >19:
+        first_encrypted_letter=grid[(pos_in_list_1-20)]
+    else:
+        first_encrypted_letter=grid[(pos_in_list_1+5)]
+    if pos_in_list_2 >19:
+        second_encrypted_letter=grid[(pos_in_list_2-20)]
+    else:
+        second_encrypted_letter=grid[(pos_in_list_2+5)]
+
+    return first_encrypted_letter,second_encrypted_letter
+
+
+def playfair_encrypt_rectangle(grid, x_1,y_1,x_2,y_2):
+    """if two letters are in not in the same col/row,
+    this is the method to decrypt 
+
+    Args:
+        grid ([list]): [playfair grid]
+        x_1 ([): [first letter, row]]
+        y_1 ([first letter col]): [first letter, col]]
+        x_2 ([second ]): [second letter, row]]
+        y_2 ([type]): [second letter, col]]
+
+    Returns:
+        [first_decrpyted_letter,
+        second_decrpyted_letter]: [Returns encrypted letters as a tuple]
+    """
+
+    first_encrypted_letter=grid[(x_1*5+y_2)]
+    second_encrypted_letter=grid[(x_2*5+y_1)]
+
+    return first_encrypted_letter,second_encrypted_letter
+
+
+def playfair_encrypt_pair(playfair_list, pair):
+    """Takes the playfair grid and a pair, calculates which method
+    of encryption it should use (row, col, rectangle, then proceeds
+    to do this decryption)
+
+    Args:
+        playfair_list ([list]): [playfair grid]
+        pair ([str]): [pair you want to encrypt i.e "AB"]
+
+    Returns:
+        [first_decrpyted_letter,
+        second_decrpyted_letter]: [Returns encrypted letters as a tuple]
+    """
+    (l1_row,l1_col)=get_play_fair_row_col(playfair_grid=playfair_list,
+                                                    letter=pair[0])
+
+    (l2_row,l2_col)=get_play_fair_row_col(playfair_grid=playfair_list,
+                                                    letter=pair[1])
+    if l1_row==l2_row:
+        (first_encrypted_letter, 
+        second_encrypted_letter)=playfair_encrypt_row_pair(grid=playfair_list, pair=pair)
+    elif l1_col==l2_col:
+        (first_encrypted_letter, 
+        second_encrypted_letter)=playfair_encrypt_col_pair(grid=playfair_list, pair=pair)
+    else:
+        (first_encrypted_letter, 
+        second_encrypted_letter)=playfair_encrypt_rectangle(grid=playfair_list, 
+                                                            x_1=l1_row,
+                                                            y_1=l1_col,
+                                                            x_2=l2_row,
+                                                            y_2=l2_col)
+
+    return first_encrypted_letter, second_encrypted_letter
+
 
 def unpack_list_of_tuples(list_tuples):
+    """takes the list of tuples e.g
+    [("A","B),("C","D)] and unpacks them into a normal list
+    like ["A","B","C","D]
 
-    plain_text=[]
+    Args:
+        list_tuples ([list]): [description]
+
+    Returns:
+        [text]: [list] the untupled list
+    """
+
+    text=[]
     for i in range(len(list_tuples)):
         first,second=list_tuples[i]
-        plain_text.append(first)
-        plain_text.append(second)
+        text.append(first)
+        text.append(second)
 
-    return plain_text
+    return text
