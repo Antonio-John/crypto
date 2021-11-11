@@ -261,6 +261,17 @@ def keyword_text_match_up(text, keyword):
     return keyword_repeat,text_list
     
 def viginere_get_table_decrypt(table,keyword_letter,text_letter):
+    """outputs the decrypted letter based on the dictionary table,
+       keyword letter and cipher text letter wanting to decrypt    
+
+    Args:
+        table ([dictionary]): dictionary of the table 
+        keyword_letter ([str]): [letter from keyword]
+        text_letter ([str]): [letter wanting to decnrypt]
+
+    Returns:
+        [str]: [decrypted letter]
+    """
     
     row=table[keyword_letter]
     where_in_row=row.index(text_letter)
@@ -270,6 +281,17 @@ def viginere_get_table_decrypt(table,keyword_letter,text_letter):
 
 
 def viginere_get_table_encrypt(table,keyword_letter,text_letter):
+    """outputs the encrypted letter based on the dictionary table,
+       keyword letter and plain text letter wanting to encrypt    
+
+    Args:
+        table ([dictionary]): dictionary of the table 
+        keyword_letter ([str]): [letter from keyword]
+        text_letter ([str]): [letter wanting to ecnrypt]
+
+    Returns:
+        [str]: [encrypted letter]
+    """
 
     row=table[keyword_letter]
     col=alphabet_list.index(text_letter)
@@ -278,19 +300,29 @@ def viginere_get_table_encrypt(table,keyword_letter,text_letter):
     return out_letter
 
 def playfair_grid_list(keyword):
-    
+    """produces the playfair grid list based on the keyword
+    Args:
+        keyword ([str]): [keyword used to produce playfair table]
+    Returns:
+        [list]: [the playfair grid as a lit]
+    """
     keyword_list_strip = list(keyword.strip())
-    
     key_word_no_dups = list(dict.fromkeys(keyword_list_strip))
-    
     other_letter=[letter for letter in alphabet_list_playfair if letter not in key_word_no_dups]
-   
     playfair_grid = key_word_no_dups + other_letter
     
     return playfair_grid
     
 def playfair_deal_with_dups(text):
-    
+    """playfair can't deal with conseuctive letters being duplicated,
+    this adds in an X between conseuctive duplciated letters
+
+    Args:
+        text ([str]): plain text to get rid of dups
+
+    Returns:
+        [message]: list of text with the X's added where there are conseuctive duplicates
+    """
     message = list(text.strip())
     for i in range(1,len(message)):
        
@@ -300,6 +332,16 @@ def playfair_deal_with_dups(text):
     return message
 
 def get_play_fair_row_col(playfair_grid,letter):
+    """[get which row, col a letter is within a playfair grid]
+
+    Args:
+        playfair_grid ([list]): [playfair grid]
+        letter ([str]): [letter you wan the row/column for]
+
+    Returns:
+        [row, col]: [the row and column for the letter passed in
+        using the playfair grid passed in]
+    """
     
     pos_in_grid=playfair_grid.index(letter)
     row,col=divmod(pos_in_grid,5)
