@@ -20,7 +20,7 @@ from tools import (type_str_error,
                    unpack_list_of_tuples)
 
 def atbash_decrypt(cipher_text):
-    """Decryps cipher texts into plain tests
+    """Decrypts cipher text into plain text
        using the atbash ciper
 
     Args:
@@ -45,14 +45,14 @@ def atbash_decrypt(cipher_text):
     return plain_text_joined
 
 def atbash_encrypt(plain_text):
-    """ENcrypts plain text into cipher text
+    """Encrypts plain text into cipher text
        using the atbash ciper
 
     Args:
-        cipher_text ([string]): [string of cipher texts to decrypt]
+        plain_text ([string]): [string of plain text to encryptt]
 
     Returns:
-        [plain_text_joined]: [the decryped cipher text i.e plain text]
+        [cipher_text_joined]: [the decryped cipher text i.e plain text]
     """
     # error catching
     type_str_error(plain_text)
@@ -61,17 +61,26 @@ def atbash_encrypt(plain_text):
     # transformation letters to atbashed equivalent
     letter_pos=get_pos_alphabet(plain_text)
     atbashed_pos=get_atbashed_pos_alphabet_encrypt(letter_pos)
-    plain_text=get_alphabet_from_pos(atbashed_pos)
+    cipher_text=get_alphabet_from_pos(atbashed_pos)
     
     # joins plain text into a string
-    plain_text_joined = "".join(plain_text)
+    cipher_text_joined = "".join(cipher_text)
     
     
-    return plain_text_joined
+    return cipher_text_joined
 
 
 def ceaser_decrpyt(cipher_text, shift):
+    """Decrypts cipher text into plain text
+       using the ceaser ciper
 
+    Args:
+        cipher_text ([string]): [string of cipher texts to decrypt]
+        shift ([int]): [The shift key applied to ceaser]
+
+    Returns:
+        [plain_text_joined]: [the decrypted cipher text i.e plain text]
+    """
     # error catching
     type_str_error(cipher_text)
     type_alphabet_error(cipher_text)
@@ -91,6 +100,16 @@ def ceaser_decrpyt(cipher_text, shift):
 
 
 def ceaser_encrypt(plain_text, shift):
+    """ENcrypts plain text into cipher text
+       using the ceaser ciper
+
+    Args:
+        plain_text ([string]): [string of plain text to encryptt]
+        shift ([int]): [The shift key applied to ceaser]
+
+    Returns:
+        [cipher_text_joined]: [the decryped cipher text i.e plain text]
+    """
 
     # error catching
     type_str_error(plain_text)
@@ -101,16 +120,26 @@ def ceaser_encrypt(plain_text, shift):
     ceaser_pos=get_ceaser_pos_decrypt(letters_pos=letter_pos,
                                       shift=shift)
 
-    plain_text=get_alphabet_from_pos(ceaser_pos)
+    cipher_text=get_alphabet_from_pos(ceaser_pos)
     
     # joins plain text into a string
-    plain_text_joined = "".join(plain_text)
+    cipher_text_joined = "".join(cipher_text)
     
     
-    return plain_text_joined
+    return cipher_text_joined
 
 def vigenere_decrypt(cipher_text, keyword, permutation=""):
+    """Decrypts cipher text into plain text
+       using the viginere ciper
 
+    Args:
+        cipher_text ([string]): [string of cipher texts to decrypt]
+        keyword ([str]): [The keyword used to decrypt the cipher]
+        permutation([str]) [The permutation of the vigenre table,
+        defaults to standard "ABC"]
+    Returns:
+        [plain_text_joined]: [the decrypted cipher text i.e plain text]
+    """
     # error catching
     type_str_error(cipher_text)
     type_alphabet_error(cipher_text)
@@ -135,7 +164,18 @@ def vigenere_decrypt(cipher_text, keyword, permutation=""):
     return plain_text_joined
 
 def vigenere_encrypt(plain_text, keyword, permutation=""):
+    """ENcrypts plain text into cipher text
+       using the viginere ciper
 
+    Args:
+        plain_text ([string]): [string of plain text to encryptt]
+        keyword ([str]): [The keyword used to encrypt the cipher]
+        permutation([str]) [The permutation of the vigenre table,
+        defaults to standard "ABC"]
+
+    Returns:
+        [cipher_text_joined]: [the decryped cipher text i.e plain text]
+    """
     # error catching
     type_str_error(plain_text)
     type_alphabet_error(plain_text)
@@ -154,12 +194,21 @@ def vigenere_encrypt(plain_text, keyword, permutation=""):
     # decrypt using table, keyword list & cipher
     cipher_text=[viginere_get_table_encrypt(table,k,text) for [k,text] in zip(key,text)]    
     # joins plain text into a string
-    plain_text_joined = "".join(cipher_text)
+    cipher_text_joined = "".join(cipher_text)
     
     
-    return plain_text_joined
+    return cipher_text_joined
     
 def playfair_decrypt(cipher_text,keyword):
+    """Decrypts cipher text into plain text
+       using the playfair ciper
+
+    Args:
+        cipher_text ([string]): [string of cipher texts to decrypt]
+        keyword ([str]): [The keyword used to decrypt the cipher]
+    Returns:
+        [plain_text_joined]: [the decrypted cipher text i.e plain text]
+    """
     
     type_str_error(cipher_text)
     type_alphabet_error(cipher_text)
@@ -179,6 +228,16 @@ def playfair_decrypt(cipher_text,keyword):
     return plain_text_no_x
 
 def playfair_encrypt(plain_text,keyword):
+    """ENcrypts plain text into cipher text
+       using the playfair ciper
+
+    Args:
+        plain_text ([string]): [string of plain text to encryptt]
+        keyword ([str]): [The keyword used to encrypt the cipher]
+
+    Returns:
+        [chiper_text_no_x]: [the decrytped cipher text i.e plain text]
+    """
     
     type_str_error(plain_text)
     type_alphabet_error(plain_text)
@@ -200,13 +259,11 @@ def playfair_encrypt(plain_text,keyword):
 x=playfair_encrypt(plain_text="MEETMEATTREFFORESTSTATION",
                             keyword="GLAMORGAN")
 
-print(x)
+
 
     
-    #playfair encrypt
+
     # tests for crypto package
-    # doc strings for all functions
-    # watch python package tutorial
     # package up 
 
 
