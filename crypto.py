@@ -70,7 +70,7 @@ def atbash_encrypt(plain_text):
     return cipher_text_joined
 
 
-def ceaser_decrpyt(cipher_text, shift):
+def ceaser_decrypt(cipher_text, shift):
     """Decrypts cipher text into plain text
        using the ceaser ciper
 

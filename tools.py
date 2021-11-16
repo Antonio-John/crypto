@@ -103,7 +103,7 @@ def get_atbashed_pos_alphabet_encrypt(numbers):
     Returns:
         new_position: the decrypted atbash position
     """
-    new_position = [(-alpha_position  % 25)  for alpha_position in numbers if alpha_position!=" "] 
+    new_position = [-(alpha_position  +1) %26  for alpha_position in numbers if alpha_position!=" "] 
     
     return new_position
 
@@ -148,7 +148,7 @@ def get_ceaser_pos(letters_pos,shift):
         [list]: [the ceaser decypted value with the shift applied to it]
     """
 
-    shifted=[(letter-shift) % 26 for letter in letters_pos]
+    shifted=[(letter-shift) % 26 for letter in letters_pos if letter != " "]
 
     return shifted
 
@@ -165,7 +165,7 @@ def get_ceaser_pos_decrypt(letters_pos,shift):
     """
 
 
-    shifted=[(letter+shift) % 26 for letter in letters_pos]
+    shifted=[(letter+shift) % 26 for letter in letters_pos if letter != " "]
 
     return shifted
 

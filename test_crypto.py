@@ -14,93 +14,123 @@ class test_crypto(unittest.TestCase):
 
     def test_atbash_decrypt(self):
 
-        input_var=""
+        input_var_1="GSRHRHMLGEVIBHVXIVGZGZOO"
+        input_var_2="gSRHRHMLGEViBHVXIVGZGZOo"
+        input_var_3="GSR HRH MLG EVI BHV XIV GZG ZOO"
 
-        result=atbash_decrypt(cipher_text=input_var)
 
-        expected=""
+        result_1=atbash_decrypt(cipher_text=input_var_1)
+        result_2=atbash_decrypt(cipher_text=input_var_2)
+        result_3=atbash_decrypt(cipher_text=input_var_3)
 
-        self.assertEqual(result,expected)
+        expected_1="THISISNOTVERYSECRETATALL"
+        expected_2="THISISNOTVERYSECRETATALL"
+        expected_3="THISISNOTVERYSECRETATALL"
+
+
+        self.assertEqual(result_1,expected_1)
+        self.assertEqual(result_2,expected_2)
+        self.assertEqual(result_3,expected_3)
+        self.assertRaises(TypeError, atbash_decrypt, 34)
+        self.assertRaises(TypeError, atbash_decrypt, "exclamation!")
 
     def test_atbash_encrypt(self):
     
-        input_var=""
+        input_var_1="THISISNOTVERYSECRETATALL"
+        input_var_2="THISiSNOTVERYsECRETATALL"
+        input_var_3="TH ISISN OTVER YSECRE TATALL"
 
-        result=atbash_encrypt(plain_text=input_var)
 
-        expected=""
+        result_1=atbash_encrypt(plain_text=input_var_1)
+        result_2=atbash_encrypt(plain_text=input_var_2)
+        result_3=atbash_encrypt(plain_text=input_var_3)
 
-        self.assertEqual(result,expected)
+        expected_1="GSRHRHMLGEVIBHVXIVGZGZOO"
+        expected_2="GSRHRHMLGEVIBHVXIVGZGZOO"
+        expected_3="GSRHRHMLGEVIBHVXIVGZGZOO"
+
+
+        self.assertEqual(result_1,expected_1)
+        self.assertEqual(result_2,expected_2)
+        self.assertEqual(result_3,expected_3)
+        self.assertRaises(TypeError, atbash_encrypt, 34)
+        self.assertRaises(TypeError, atbash_encrypt, "exclamation!")
 
     def test_ceaser_decrypt(self):
     
-        input_var=""
+        input_var_1="MTBVZNHPQDINIDTZGWJFPYMNX"
+        input_var_2="MTBVZN HPQDINIDT ZGWJFPY MNX"
 
-        result=ceaser_decrypt(cipher_text=input_var,
-                             shift=int)
+        result_1=ceaser_decrypt(cipher_text=input_var_1,
+                             shift=5)
 
-        expected=""
+        result_2=ceaser_decrypt(cipher_text=input_var_2,
+                             shift=5)
 
-        self.assertEqual(result,expected)
+        expected_1="HOWQUICKLYDIDYOUBREAKTHIS"
+        expected_2="HOWQUICKLYDIDYOUBREAKTHIS"
+
+        self.assertEqual(result_1,expected_1)
+        self.assertEqual(result_2,expected_2)
     
-    def test_ceaser_encrypt(self):
+    # def test_ceaser_encrypt(self):
         
-        input_var=""
+    #     input_var=""
 
-        result=ceaser_encrypt(plain_text=input_var,
-                             shift=int)
+    #     result=ceaser_encrypt(plain_text=input_var,
+    #                          shift=int)
 
-        expected=""
+    #     expected=""
 
-        self.assertEqual(result,expected)
+    #     self.assertEqual(result,expected)
 
-    def test_vigenere_decrypt(self):
+    # def test_vigenere_decrypt(self):
         
-        input_var=""
+    #     input_var=""
 
-        result=vigenere_decrypt(cipher_text=input_var,
-                                keyword="",
-                                permutation="")
+    #     result=vigenere_decrypt(cipher_text=input_var,
+    #                             keyword="",
+    #                             permutation="")
 
-        expected=""
+    #     expected=""
 
-        self.assertEqual(result,expected)
+    #     self.assertEqual(result,expected)
 
-    def test_vigenere_encrypt(self):
+    # def test_vigenere_encrypt(self):
         
-        input_var=""
+    #     input_var=""
 
-        result=vigenere_encrypt(plain_text=input_var,
-                                keyword="",
-                                permutation="")
+    #     result=vigenere_encrypt(plain_text=input_var,
+    #                             keyword="",
+    #                             permutation="")
 
-        expected=""
+    #     expected=""
 
-        self.assertEqual(result,expected)
+    #     self.assertEqual(result,expected)
 
 
-    def test_playfair_decrypt(self):
+    # def test_playfair_decrypt(self):
         
-        input_var=""
+    #     input_var=""
 
-        result=playfair_decrypt(cipher_text=input_var,
-                                keyword="")
+    #     result=playfair_decrypt(cipher_text=input_var,
+    #                             keyword="")
 
-        expected=""
+    #     expected=""
 
-        self.assertEqual(result,expected)
+    #     self.assertEqual(result,expected)
 
 
-    def test_playfair_encrypt(self):
+    # def test_playfair_encrypt(self):
         
-        input_var=""
+    #     input_var=""
 
-        result=playfair_encrypt(plain_text=input_var,
-                                keyword="")
+    #     result=playfair_encrypt(plain_text=input_var,
+    #                             keyword="")
 
-        expected=""
+    #     expected=""
 
-        self.assertEqual(result,expected)
+    #     self.assertEqual(result,expected)
 
 
 
