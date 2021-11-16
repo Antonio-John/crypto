@@ -60,6 +60,7 @@ class test_crypto(unittest.TestCase):
     
         input_var_1="MTBVZNHPQDINIDTZGWJFPYMNX"
         input_var_2="MTBVZN HPQDINIDT ZGWJFPY MNX"
+        input_var_3="MTBVZNHPQDINIDTZGWJFPYMNX"
 
         result_1=ceaser_decrypt(cipher_text=input_var_1,
                              shift=5)
@@ -67,11 +68,19 @@ class test_crypto(unittest.TestCase):
         result_2=ceaser_decrypt(cipher_text=input_var_2,
                              shift=5)
 
+        result_3=ceaser_decrypt(cipher_text=input_var_2,
+                             shift=5)
+
         expected_1="HOWQUICKLYDIDYOUBREAKTHIS"
         expected_2="HOWQUICKLYDIDYOUBREAKTHIS"
+        expected_3="HOWQUICKLYDIDYOUBREAKTHIS"
 
         self.assertEqual(result_1,expected_1)
         self.assertEqual(result_2,expected_2)
+        self.assertEqual(result_3,expected_3)
+        self.assertRaises(TypeError, ceaser_decrypt, 34,3)
+        self.assertRaises(TypeError, ceaser_decrypt, "exclamation!",4)
+        self.assertRaises(TypeError, ceaser_decrypt, "EXCLAMATION","A")
     
     # def test_ceaser_encrypt(self):
         
