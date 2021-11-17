@@ -297,14 +297,8 @@ def playfair_encrypt(plain_text,keyword):
 
     return chiper_text_no_x
 
-x=playfair_encrypt(plain_text="MEETMEATTREFFORESTSTATION",
-                            keyword="GLAMORGAN")
-
-
-
-    
-
-    # tests for crypto package
-    # package up 
-
-
+# folder structure
+# .innit. files
+# read me
+# license 
+# CI/CD files

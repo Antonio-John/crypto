@@ -245,8 +245,6 @@ class test_crypto(unittest.TestCase):
         self.assertRaises(TypeError, playfair_encrypt, "exclamation!","A")
         self.assertRaises(TypeError, playfair_encrypt, "EXCLAMATION",6)
 
-
-
 if __name__=="__main__":
         unittest.main()
 
