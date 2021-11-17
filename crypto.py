@@ -146,11 +146,23 @@ def vigenere_decrypt(cipher_text, keyword, permutation=""):
     type_str_error(keyword)
     type_alphabet_error(keyword)
     type_str_error(permutation)
-    type_duplicate_letter_error(keyword)
+    type_duplicate_letter_error(permutation)
     
+    # capitalise 
+    keyword=keyword.upper()
+    cipher_text=cipher_text.upper()
+    permutation=permutation.upper()
+
+    # remove white spaces
+    keyword=keyword.replace(" ", "")
+    cipher_text=cipher_text.replace(" ", "")
+    permutation=permutation.replace(" ","")
+
+
     # create table
     table=create_viginere_table(permutation)
-    
+
+
     # list of keyword next to cipher text
     key,cipher=keyword_text_match_up(text=cipher_text, 
                                      keyword=keyword) 
@@ -182,9 +194,19 @@ def vigenere_encrypt(plain_text, keyword, permutation=""):
     type_str_error(keyword)
     type_alphabet_error(keyword)
     type_str_error(permutation)
-    type_duplicate_letter_error(keyword)
-    
-    # create table
+    type_duplicate_letter_error(permutation)
+
+    # capitalise 
+    keyword=keyword.upper()
+    plain_text=plain_text.upper()
+    permutation=permutation.upper()
+
+    # remove white spaces
+    keyword=keyword.replace(" ", "")
+    plain_text=plain_text.replace(" ", "")
+    permutation=permutation.replace(" ","")
+
+      # create table
     table=create_viginere_table(permutation)
     
     # list of keyword next to plain text
@@ -192,7 +214,7 @@ def vigenere_encrypt(plain_text, keyword, permutation=""):
                                      keyword=keyword) 
     
     # decrypt using table, keyword list & cipher
-    cipher_text=[viginere_get_table_encrypt(table,k,text) for [k,text] in zip(key,text)]    
+    cipher_text=[viginere_get_table_encrypt(table,k,text) for [k,text] in zip(key,text) ]    
     # joins plain text into a string
     cipher_text_joined = "".join(cipher_text)
     

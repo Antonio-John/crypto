@@ -108,17 +108,48 @@ class test_crypto(unittest.TestCase):
         self.assertRaises(TypeError, ceaser_encrypt, "exclamation!",4)
         self.assertRaises(TypeError, ceaser_encrypt, "EXCLAMATION","A")
 
-    # def test_vigenere_decrypt(self):
+    def test_vigenere_decrypt(self):
         
-    #     input_var=""
+        input_var_1="FGQVEQYONMCCHAXTPB"
+        input_var_2="F G Q V E Q Y O N M C C H A X T P B"
+        input_var_3="YDXGJHCJVODXUGGZ"
+        perm_3="thislepgywnomarkdbfcjquvxz"
 
-    #     result=vigenere_decrypt(cipher_text=input_var,
-    #                             keyword="",
-    #                             permutation="")
+        result_1a=vigenere_decrypt(cipher_text=input_var_1,
+                                keyword="FAMILY",
+                                permutation="")
 
-    #     expected=""
+        result_1b=vigenere_decrypt(cipher_text=input_var_1,
+                                keyword="family",
+                                permutation="")
 
-    #     self.assertEqual(result,expected)
+        result_2a=vigenere_decrypt(cipher_text=input_var_2,
+                                keyword="FAMILY",
+                                permutation="")
+
+        result_2b=vigenere_decrypt(cipher_text=input_var_2,
+                                keyword="fam ily",
+                                permutation="")
+
+        result_3=vigenere_decrypt(cipher_text=input_var_3,
+                                keyword="NIGHT time",
+                                permutation=perm_3)
+
+
+        expected_1="AGENTSTOBERECALLED"
+        expected_2="AGENTSTOBERECALLED"
+        expected_3="VISABILITYISPOOR"
+
+        self.assertEqual(result_1a,expected_1)
+        self.assertEqual(result_1b,expected_1)
+        self.assertEqual(result_2a,expected_2)
+        self.assertEqual(result_2b,expected_2)
+        self.assertEqual(result_3,expected_3)
+
+        self.assertRaises(TypeError, vigenere_decrypt, 34,3,5)
+        self.assertRaises(TypeError, vigenere_decrypt, "exclamation!",4,3)
+        self.assertRaises(TypeError, vigenere_decrypt, "EXCLAMATION","A","BB")
+
 
     # def test_vigenere_encrypt(self):
         
@@ -178,9 +209,3 @@ if __name__=="__main__":
 
 
 
-#print(ceaser_decrypt("EZOLJ", shift=11)) should be equal to today
-
-#get_ceaser_pos_decrypt(letters_pos,shift)
-#print(ceaser_encrypt("TODAY", 11))
-#x=playfair_decrypt(cipher_text="GIVHYCHGSYPCFHWHGDHPUTSMYTLD",keyword="GLAMORGAN")
-#print(x)
