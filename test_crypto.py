@@ -220,17 +220,30 @@ class test_crypto(unittest.TestCase):
         self.assertRaises(TypeError, playfair_decrypt, "EXCLAMATION",6)
 
 
-
-    # def test_playfair_encrypt(self):
+    def test_playfair_encrypt(self):
         
-    #     input_var=""
+        input_var_1="MEETMEATTREFFORESTSTATION"
+        input_var_2="MEET ME at TREFFOREST STATION"
 
-    #     result=playfair_encrypt(plain_text=input_var,
-    #                             keyword="")
 
-    #     expected=""
+        result_1a=playfair_encrypt(plain_text=input_var_1,
+                                keyword="GLAMORGAN")
 
-    #     self.assertEqual(result,expected)
+        result_1b=playfair_encrypt(plain_text=input_var_1,
+                                keyword="GLAm ORGAN")
+
+        result_2=playfair_encrypt(plain_text=input_var_2,
+                                keyword="GLAMORGAN")
+
+        expected="GIVHYCHGSYPCFHWHGDHPUTSMYTLD"
+
+        self.assertEqual(result_1a,expected)
+        self.assertEqual(result_1b,expected)
+        self.assertEqual(result_2,expected)
+
+        self.assertRaises(TypeError, playfair_encrypt, 34,3)
+        self.assertRaises(TypeError, playfair_encrypt, "exclamation!","A")
+        self.assertRaises(TypeError, playfair_encrypt, "EXCLAMATION",6)
 
 
 

@@ -278,7 +278,7 @@ def playfair_encrypt(plain_text,keyword):
 
     # capitalise 
     keyword=keyword.upper()
-    cipher_text=plain_text.upper()
+    plain_text=plain_text.upper()
 
     # remove white spaces
     keyword=keyword.replace(" ", "")
