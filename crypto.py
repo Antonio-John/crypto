@@ -231,11 +231,21 @@ def playfair_decrypt(cipher_text,keyword):
     Returns:
         [plain_text_joined]: [the decrypted cipher text i.e plain text]
     """
-    
+    # catching errros
     type_str_error(cipher_text)
     type_alphabet_error(cipher_text)
     type_str_error(keyword)
     type_alphabet_error(keyword)
+
+        # capitalise 
+    keyword=keyword.upper()
+    cipher_text=cipher_text.upper()
+
+    # remove white spaces
+    keyword=keyword.replace(" ", "")
+    cipher_text=cipher_text.replace(" ", "")
+    cipher_text=cipher_text.replace("J", "I")
+
 
     grid_list=playfair_grid_list(keyword)
     plain_text_adjusted_dups=playfair_deal_with_dups(cipher_text)
@@ -260,11 +270,20 @@ def playfair_encrypt(plain_text,keyword):
     Returns:
         [chiper_text_no_x]: [the decrytped cipher text i.e plain text]
     """
-    
+    # catching errors
     type_str_error(plain_text)
     type_alphabet_error(plain_text)
     type_str_error(keyword)
     type_alphabet_error(keyword)
+
+    # capitalise 
+    keyword=keyword.upper()
+    cipher_text=plain_text.upper()
+
+    # remove white spaces
+    keyword=keyword.replace(" ", "")
+    plain_text=plain_text.replace(" ", "")
+    plain_text=plain_text.replace("J", "I")
 
     grid_list=playfair_grid_list(keyword)
     plain_text_adjusted_dups=playfair_deal_with_dups(plain_text)

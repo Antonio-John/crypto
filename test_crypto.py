@@ -194,16 +194,31 @@ class test_crypto(unittest.TestCase):
         self.assertRaises(TypeError, vigenere_encrypt, "EXCLAMATION","A","BB")
 
 
-    # def test_playfair_decrypt(self):
+    def test_playfair_decrypt(self):
         
-    #     input_var=""
+        input_var_1="GIVHYCHGSYPCFHWHGDHPUTSMYTLD"
+        input_var_2="GI VH YC HG SY PC FH WH GD HP UT SM YT LD"
 
-    #     result=playfair_decrypt(cipher_text=input_var,
-    #                             keyword="")
 
-    #     expected=""
+        result_1a=playfair_decrypt(cipher_text=input_var_1,
+                                keyword="GLAMORGAN")
 
-    #     self.assertEqual(result,expected)
+        result_1b=playfair_decrypt(cipher_text=input_var_1,
+                                keyword="GLAm ORGAN")
+
+        result_2=playfair_decrypt(cipher_text=input_var_2,
+                                keyword="GLAMORGAN")
+
+        expected="MEETMEATTREFFORESTSTATION"
+
+        self.assertEqual(result_1a,expected)
+        self.assertEqual(result_1b,expected)
+        self.assertEqual(result_2,expected)
+
+        self.assertRaises(TypeError, playfair_decrypt, 34,3)
+        self.assertRaises(TypeError, playfair_decrypt, "exclamation!","A")
+        self.assertRaises(TypeError, playfair_decrypt, "EXCLAMATION",6)
+
 
 
     # def test_playfair_encrypt(self):
