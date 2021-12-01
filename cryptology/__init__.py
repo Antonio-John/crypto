@@ -1,1 +1,1 @@
-from cryptology import *
+from cryptology.cryptology import *
