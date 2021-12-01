@@ -1,4 +1,4 @@
-from tools import (type_str_error, 
+from cryptology.tools import (type_str_error, 
                    type_alphabet_error,
                    type_int_error,
                    type_duplicate_letter_error,
