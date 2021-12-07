@@ -1,7 +1,0 @@
-https://www.youtube.com/watch?v=GIF3LaRqgXo
-
-To Do:
-
-- Classifiers in set up.py file
-- put tests in it's own directory 
-- add into set up, url, authour and email
