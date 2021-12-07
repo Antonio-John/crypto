@@ -5,7 +5,7 @@ This is a package which decrypt/encrypts text using a few different methods.
 Run the following to install:
 
 ```python
-pip3 instal cryptology
+pip install cryptology
 ```
 
 ## Usage
